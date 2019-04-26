@@ -7,7 +7,7 @@ class CaseCard extends Component {
   render() {
     return (
       <div className="case-card">
-
+        
       </div>
     )
   }
