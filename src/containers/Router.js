@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 // import { Route } from 'react-router'
 import {Switch, Route, Link, withRouter} from 'react-router-dom'
 import Signup from '../components/Signup';
-import Login from '../components/Login';
-// import Home from '../containers/Home';
+import LoginForm from '../components/LoginForm';
 import PostList from '../containers/PostList'
 import Home from '../containers/Home'
 
@@ -18,7 +17,7 @@ export default class Router extends Component {
   	  <React.Fragment>
         <Route exact path='/' component={Home} />
   	    <Route exact path="/mollify/signup" component={Signup}/>
-  	    <Route exact path="/mollify/login" component={Login}/>
+  	    <Route exact path="/mollify/login" component={LoginForm}/>
   	    <Route exact path="/mollify/student-profile" component={StudentProfile}/>
   	    <Route exact path="/mollify/counselor-profile" component={CounselorProfile}/>
   	    <Route exact path="/mollify/posts" component={PostList}/>

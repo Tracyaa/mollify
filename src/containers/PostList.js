@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-// import adapter from '../adapters/adapter';
-import PostCard from '../components/PostCard'
 import { connect } from 'react-redux'
-import { getPosts } from '../actions/postActions'
+import PostCard from '../components/PostCard'
+
 
 
 class PostList extends Component {
 
-  componentDidMount() {
-    this.props.getPosts()
-  }
 
   // filteredByGender = () => {
   //
@@ -18,6 +14,7 @@ class PostList extends Component {
   render() {
     return (
       <div className="post-card">
+        <h2>All students posts</h2>
         <ul>
           {/* postCards */}
         </ul>
@@ -28,8 +25,8 @@ class PostList extends Component {
 
 }
 
-// export default PostList;
+
 
 const mapStateToProps = state => ({posts: state.posts})
-
-export default connect(mapStateToProps, { getPosts })(PostList)
+//
+export default connect(mapStateToProps)(PostList)

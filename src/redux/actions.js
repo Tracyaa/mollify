@@ -10,10 +10,23 @@ export const savePostsToState = (posts) => {
   return {type: "SAVE_POSTS_TO_STATE", payload: posts}
 }
 
+export const fetchSignup = (userObj) => {
+  return (dispatch) =>{
+    fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(userObj)
+    })
+  }
+}
+
 // userObj = {username: "eric", password: "123"}
-export const fetchLogIn = (userObj, push) => {
+export const fetchLogIn = (userObj) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/login", {
+    fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -26,17 +39,16 @@ export const fetchLogIn = (userObj, push) => {
         dispatch(saveUserToState(information.user))
         dispatch(saveTokenToState(information.jwt))
         localStorage.setItem("jwt", information.jwt)
-        push("/profile")
       }
     })
   }
 }
 
-export const saveUserToState = (userObj) => {
+const saveUserToState = (userObj) => {
   return {type: "SAVE_USER_TO_STATE", payload: userObj}
 }
 
-export const saveTokenToState = (token) => {
+const saveTokenToState = (token) => {
   return {type: "SAVE_TOKEN_TO_STATE", payload: token}
 }
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import caseReducer from '../reducers/caseReducer';
+import postReducer from '../redux/postReducer';
 import { connect } from 'react-redux';
 
 class CaseCard extends Component {
 
   render() {
     return (
-      <div className="case-card">
-        
+      <div className="post-card">
+
       </div>
     )
   }

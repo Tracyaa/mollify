@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import './App.css';
 // REDUX
 import {connect} from 'react-redux'
-import {fetchPosts} from './redux'
+import {fetchPosts} from './redux/actions'
 
 // ROUTING
 import {Switch, Route, Link, withRouter} from 'react-router-dom'
@@ -13,8 +13,10 @@ import Router from './containers/Router';
 import LoginForm from './components/LoginForm';
 import Signup from "./components/Signup";
 import PostList from "./containers/PostList";
-
+import StudentProfile from './components/StudentProfile'
+import CounselorProfile from './components/CounselorProfile'
 import Home from './containers/Home';
+import Navbar from './components/Navbar'
 
 class App extends Component {
 
@@ -22,24 +24,19 @@ class App extends Component {
     this.props.fetchPosts()
   }
 
-
-
-
   render() {
 
     return (
         <div className="Mollify">
-          <nav className="nav">
-            <ul>
-              <Link to="/">Home</Link>
-              <Link to="/mollify/signup">Signup</Link>
-              <Link to="/mollify/login">Login</Link>
-              <Link to="/mollify/student-profile">Student</Link>
-              <Link to="/mollify/counselor-profile">Counselor</Link>
-              <Link to="/mollify/posts">Posts</Link>
-            </ul>
-          </nav>
-
+          <Navbar />
+          <React.Fragment>
+            <Route exact path='/' component={Home} />
+      	    <Route exact path="/mollify/signup" component={Signup}/>
+      	    <Route exact path="/mollify/login" component={LoginForm}/>
+      	    <Route exact path="/mollify/student-profile" component={StudentProfile}/>
+      	    <Route exact path="/mollify/counselor-profile" component={CounselorProfile}/>
+      	    <Route exact path="/mollify/posts" component={PostList}/>
+      	  </React.Fragment>
           <Switch>
             <Route path='/login' render={(routerProps) => <LoginForm {...routerProps}/>}/>
             <Route path='/posts' render={(routerProps) => <PostList {...routerProps}/>}/>
