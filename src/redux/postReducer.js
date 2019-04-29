@@ -1,20 +1,21 @@
 const initialState = {
-  posts: []
+  all: []
 }
 
-const postReducer = (postState = initialState, action) => {
+const postReducer = (state = initialState, action) => {
 
   switch(action.type) {
-    // console.log(postState, action)
-    case 'LOAD_CASES':
-      return {...postState, posts: action.payload}
-    //
-    // case 'EDIT_CASE':
-    //
+
+    case 'SAVE_POSTS_TO_STATE':
+      return {...state, all: action.payload}
+
+    case 'POST_NEW_CASE':
+      return {...state, post: action.payload}
+
     // case 'REMOVE_CASE':
 
     default:
-      return postState;
+      return state;
 
   }
 }

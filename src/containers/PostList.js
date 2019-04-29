@@ -7,16 +7,24 @@ import PostCard from '../components/PostCard'
 class PostList extends Component {
 
 
-  // filteredByGender = () => {
-  //
-  // }
+  availablePosts = () => {
+    console.log(this.props.posts);
+    if (!!this.props.posts) {
+      return this.props.posts.map(post => <PostCard key={post.id} post={post}/>)
+    }
+  }
+
 
   render() {
     return (
       <div className="post-card">
         <h2>All students posts</h2>
         <ul>
-          {/* postCards */}
+          {this.props.role === 'counselor' ?
+            this.availablePosts()
+            :
+            <h1>You suck</h1>
+          }
         </ul>
       </div>
 
@@ -25,8 +33,13 @@ class PostList extends Component {
 
 }
 
+// const mapStateToProps = (state) => state
 
+const mapStateToProps = state => {
+  return {
+    posts: state.post.all,
+    role: state.user.role
+  }
+}
 
-const mapStateToProps = state => ({posts: state.posts})
-//
 export default connect(mapStateToProps)(PostList)

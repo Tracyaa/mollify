@@ -1,33 +1,42 @@
-import React, { Component } from 'react';
-import {Switch, Route, Link, withRouter} from 'react-router-dom'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {removeUserFromState} from '../redux/actions'
 
 
 class Navbar extends Component {
   render() {
     return (
 
-      <nav class="uk-navbar-container uk-margin" uk-navbar="mode: click">
-        <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav">
-            <li class="uk-active"><Link to="/">Mollify</Link></li>
+      <nav className="uk-navbar-container uk-margin" uk-navbar="mode: click">
+        <div className="uk-navbar-left">
+        <ul className="uk-navbar-nav">
+            <li className="uk-active"><Link to="/">Mollify</Link></li>
             <li><Link to="/mollify/counselor-profile">Counselor</Link></li>
           </ul>
         </div>
 
 
-        <div class="uk-navbar-right">
+        <div className="uk-navbar-right">
 
-         <ul class="uk-navbar-nav">
+         <ul className="uk-navbar-nav">
            <li><Link to="/mollify/posts">All Posts</Link></li>
-           <li><Link to="/mollify/posts">Write a post</Link></li>
-           <li class="uk-active"><a href="#">Active</a></li>
+           <li><Link to="/mollify/posts/new">Write a post</Link></li>
            <li>
-             <a href="#">Account</a>
-             <div class="uk-navbar-dropdown">
-               <ul class="uk-nav uk-navbar-dropdown-nav">
-                   <li><Link to="/mollify/login">Login</Link></li>
-                   <li><Link to="/mollify/signup">Signup</Link></li>
-                   <li><Link to="/mollify/student-profile">Student</Link></li>
+             <a href="/mollify/student-profile">Account</a>
+             <div className="uk-navbar-dropdown">
+               <ul className="uk-nav uk-navbar-dropdown-nav">
+                 {!!this.props.token ?
+                   <div>
+                     <li><Link to="/mollify/student-profile">P r o f i l e</Link></li>
+                     <li onClick={this.props.removeUserFromState}><Link to="/">L o g o u t</Link></li>
+                   </div>
+                   :
+                   <div>
+                     <li><Link to="/mollify/login">L o g i n</Link></li>
+                     <li><Link to="/mollify/signup">S i g n u p</Link></li>
+                   </div>
+                 }
                </ul>
              </div>
            </li>
@@ -35,25 +44,15 @@ class Navbar extends Component {
 
        </div>
       </nav>
-
-
-
-
-
-      // <div className="nav-bar">
-      //   <nav className="nav">
-      //     <ul>
-      //       <Link to="/">Home</Link>
-      //       <Link to="/mollify/signup">Signup</Link>
-      //       <Link to="/mollify/login">Login</Link>
-      //       <Link to="/mollify/student-profile">Student</Link>
-      //       <Link to="/mollify/counselor-profile">Counselor</Link>
-      //       <Link to="/mollify/posts">Posts</Link>
-      //     </ul>
-      //   </nav>
-      // </div>
     )
   }
 }
 
-export default Navbar
+const mapStateToProps = state => {
+  return {
+    token: state.user.token
+  }
+}
+export default connect(mapStateToProps, {removeUserFromState})(Navbar);
+
+// <a href="#">Account</a>

@@ -1,14 +1,13 @@
-export const fetchPosts = () => {
-  return (dispatch) => {
-    fetch("http://localhost:3000/posts")
-    .then(res => res.json())
-    .then(posts => dispatch(savePostsToState(posts)))
-  }
+///////USER ACTIONS///////
+
+const saveUserToState = (userObj) => {
+  return {type: "SAVE_USER_TO_STATE", payload: userObj}
 }
 
-export const savePostsToState = (posts) => {
-  return {type: "SAVE_POSTS_TO_STATE", payload: posts}
+const saveTokenToState = (token) => {
+  return {type: "SAVE_TOKEN_TO_STATE", payload: token}
 }
+
 
 export const fetchSignup = (userObj) => {
   return (dispatch) =>{
@@ -23,17 +22,17 @@ export const fetchSignup = (userObj) => {
   }
 }
 
-// userObj = {username: "eric", password: "123"}
 export const fetchLogIn = (userObj) => {
   return (dispatch) => {
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        'Accept': 'application/json'
       },
       body: JSON.stringify(userObj)
     })
-    .then(res => res.json())
+    .then(resp => resp.json())
     .then((information) => {
       if (information.jwt) {
         dispatch(saveUserToState(information.user))
@@ -44,12 +43,29 @@ export const fetchLogIn = (userObj) => {
   }
 }
 
-const saveUserToState = (userObj) => {
-  return {type: "SAVE_USER_TO_STATE", payload: userObj}
+export const removeUserFromState = () => {
+  return {type: "REMOVE_USER_FROM_STATE"}
 }
 
-const saveTokenToState = (token) => {
-  return {type: "SAVE_TOKEN_TO_STATE", payload: token}
+///////STUDENT POST situations///////
+
+const savePostsToState = (posts) => {
+  return {type: "SAVE_POSTS_TO_STATE", payload: posts}
+}
+
+export const fetchPosts = () => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/posts")
+    .then(resp => resp.json())
+    .then(posts => dispatch(savePostsToState(posts)))
+  }
+}
+
+
+
+//////COUNSELOR OPEN inquiries//////
+const savePostToUser = (post) => {
+  return {type: "SAVE_POST_TO_USER", payload: post}
 }
 
 export const fetchPost = (postID, token) => {
@@ -58,15 +74,11 @@ export const fetchPost = (postID, token) => {
       method: "POST",
       headers: {"Authorization": token}
     })
-    .then(res => res.json())
+    .then(resp => resp.json())
     .then(post => {
       if (!post.message) {
         dispatch(savePostToUser(post))
       }
     })
   }
-}
-
-export const savePostToUser = (post) => {
-  return {type: "SAVE_POST_TO_USER", payload: post}
 }

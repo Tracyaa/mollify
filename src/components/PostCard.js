@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import postReducer from '../redux/postReducer';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-class CaseCard extends Component {
+class PostCard extends Component {
 
   render() {
     return (
-      <div className="post-card">
-
+      <div className="uk-child-width-1-2@s uk-grid-match uk-grid">
+        <div>
+        <div className="uk-card uk-card-default uk-card-hover uk-card-body">
+            <h3 className="uk-card-title">No name</h3>
+            <p>{this.props.post.content}</p>
+        </div>
+    </div>
       </div>
+
+
     )
   }
 }
@@ -24,4 +30,4 @@ class CaseCard extends Component {
 
 // const mapStateToProps = { removeCase }
 
-export default connect()(CaseCard)
+export default PostCard

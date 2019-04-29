@@ -57,9 +57,9 @@ class Signup extends Component {
             <input className="uk-input uk-border-rounded" type="password" placeholder="confirm password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.changeHandler} required/>
           </div>
         </div>
-        <div class="uk-margin">
+        <div className="uk-margin">
           <div className="uk-inline">
-            <select class="uk-select uk-border-rounded" required>
+            <select className="uk-select uk-border-rounded" required>
                 <option value='female'>Female</option>
                 <option value='male'>Male</option>
                 <option value='other'>Other</option>
@@ -78,24 +78,6 @@ class Signup extends Component {
         </div>
         <button className='uk-button uk-button-primary uk-border-rounded'>Signup</button>
       </form>
-
-
-
-
-      // <form onSubmit={this.submitHandler}>
-      //   <li><input type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler} /></li>
-      //   <li><input type="text" placeholder="email" name="email" value={this.state.email} onChange={this.changeHandler} /></li>
-      //   <li><input type="password" placeholder="password" name="password" value={this.state.password} onChange={this.changeHandler} /></li>
-      //   <li><input type="password" placeholder="password_confirmation" name="password_confirmation" value={this.state.password_confirmation} onChange={this.changeHandler} /></li>
-      //   <li><select name="gender" value={this.state.value} onChange={this.changeHandler}>
-      //     <option value="female">female</option>
-      //     <option value="male">male</option>
-      //     <option value="other">other</option>
-      //   </select></li>
-      // <li><input type="number" placeholder="age" name="age" value={this.state.age} onChange={this.changeHandler} /></li>
-      //   <li><input type="text" placeholder="school" name="school" value={this.state.school} onChange={this.changeHandler} /></li>
-      //   <li><button>Sign Up</button></li>
-      // </form>
     );
   }
 }
