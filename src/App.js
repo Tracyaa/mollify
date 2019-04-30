@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import './App.css';
 // REDUX
 import {connect} from 'react-redux'
-import {fetchPosts} from './redux/actions'
+import {fetchPosts, fetchCurrentUser} from './redux/actions'
 
 // ROUTING
 import {Switch, Route, withRouter} from 'react-router-dom'
@@ -22,6 +22,9 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchPosts()
+    if (!!localStorage.jwt) {
+      this.props.fetchCurrentUser()
+    }
   }
 
   render() {
@@ -46,8 +49,8 @@ class App extends Component {
 const mapStateToProps = ({post, user}) => {
   return {
     posts: post.all,
-    token: user.token
+    token: user.token,
   }
 }
 
-export default withRouter(connect(mapStateToProps, {fetchPosts})(App));
+export default withRouter(connect(mapStateToProps, {fetchPosts, fetchCurrentUser})(App));

@@ -8,9 +8,48 @@ const saveTokenToState = (token) => {
   return {type: "SAVE_TOKEN_TO_STATE", payload: token}
 }
 
+const updateUserPostInfoToState = (user) => {
+  return {type: "UPDATE_USER_POST_INFO_TO_STATE", payload: user}
+}
+
+const setUserToState = (user) => {
+  return {type: "SET_USER_TO_STATE", payload: user}
+}
+
+export const patchUserInfo = (user) => {
+  const updatedUser = {...user, has_a_post: !user.has_a_post}
+  return (dispatch) =>{
+    fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(updatedUser)
+    })
+    .then(res => res.json())
+    .then(userObj => dispatch(updateUserPostInfoToState(userObj)))
+  }
+}
+
+export const fetchCurrentUser = () => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/current_user", {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': localStorage.getItem('jwt')
+      }
+    })
+    .then(res => res.json())
+    .then(userObj => {
+      dispatch(setUserToState(userObj))
+    })
+  }
+}
 
 export const fetchSignup = (userObj) => {
-  return (dispatch) =>{
+  return (dispatch) => {
     fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
@@ -38,6 +77,8 @@ export const fetchLogIn = (userObj) => {
         dispatch(saveUserToState(information.user))
         dispatch(saveTokenToState(information.jwt))
         localStorage.setItem("jwt", information.jwt)
+        // localStorage.setItem('user', JSON.stringify(information.user));
+        // JSON.parse(localStorage.getItem('user'));
       }
     })
   }
@@ -61,6 +102,24 @@ export const fetchPosts = () => {
   }
 }
 
+const savePostToState = (post) => {
+  return {type: "POST_NEW_POST_TO_STATE", payload: post}
+}
+
+export const postPost = (postObj) => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/posts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(postObj)
+    })
+    .then(resp => resp.json())
+    .then(post => dispatch(savePostToState(post)))
+  }
+}
 
 
 //////COUNSELOR OPEN inquiries//////

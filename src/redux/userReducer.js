@@ -13,40 +13,50 @@ let initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case "SAVE_USER_TO_STATE":
       let userObj = action.payload
-      console.log(userObj);
+      return { ...state, ...userObj }
+
+    case "SET_USER_TO_STATE":
+      let user = action.payload.user
       return {
-        ...state,
-        ...userObj
-        // id: userObj.id,
-        // email: userObj.email,
-        // gender: userObj.gender,
-        // age: userObj.age,
-        // role: userObj.role,
-        // school: userObj.school,
-        // location: userObj.location,
-        // has_a_post: userObj.has_a_post,
-        // posts: userObj.user_posts
+        id: user.id,
+        email: user.email,
+        gender: user.gender,
+        age: user.age,
+        role: user.role,
+        school: user.school,
+        location: user.location,
+        has_a_post: user.has_a_post,
+        posts: user.user_posts,
+        token: localStorage.getItem('jwt')
       }
+
     case "SAVE_TOKEN_TO_STATE":
+    console.log(action.payload);
+      return {...state, token: action.payload}
+
+    case "UPDATE_USER_POST_INFO_TO_STATE":
+    console.log(action.payload);
       return {
-        ...state,
-        token: action.payload
-      }
-    case "SAVE_POST_TO_USER":
-      return {
-        ...state,
-        posts: [...state.posts, action.payload ]
-      }
+        ...action.payload
+      };
+
     case "REMOVE_USER_FROM_STATE":
-    localStorage.removeItem('jwt')
-      return {
-        initialState
-      }
+      localStorage.clear()
+      // localStorage.removeItem('jwt')
+      return {initialState}
+
+    // case "SAVE_POST_TO_USER":
+    //   return {
+    //     ...state,
+    //     posts: [...state.posts, action.payload]
+    //   }
+
     default:
       return state;
   }
 }
 
-export default userReducer
+export default userReducer;

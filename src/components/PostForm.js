@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {postPost, patchUserInfo} from '../redux/actions'
+
+
 
 class PostForm extends Component {
 
   state = {
-    student_id: "",
+    student_id: this.props.user.id,
     gender_preference: "",
     type: "",
     content: ""
@@ -13,15 +16,23 @@ class PostForm extends Component {
   changeHandler = e => {
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log(this.state));
+    });
   };
 
   submitHandler = e => {
     e.preventDefault();
+    if (!this.props.user.has_a_post) {
+      this.props.patchUserInfo(this.props.user)
+      this.props.postPost(this.state)
+      this.props.history.push('/mollify/posts')
+    } else {
+      this.props.history.push('/mollify/login')
+    }
   };
 
+
+
   render() {
-    console.log(this.props.user);
     return (
 
         <form onSubmit={this.submitHandler} className="uk-container uk-container-expand">
@@ -30,7 +41,7 @@ class PostForm extends Component {
             <legend className="uk-legend">Write new Post:</legend>
 
             <div className="uk-margin">
-              <select className="uk-select" name="gender_preference" onChange={this.changeHandler}>
+              <select onChange={this.changeHandler} className="uk-select" name="gender_preference">
                 <option>choose your preferred gender</option>
                 <option value="female">female</option>
                 <option value="male">male</option>
@@ -39,7 +50,7 @@ class PostForm extends Component {
             </div>
 
             <div className="uk-margin">
-              <textarea className="uk-textarea" rows="5" placeholder="Textarea"></textarea>
+              <textarea onChange={this.changeHandler} name="content" className="uk-textarea" rows="5" placeholder="Textarea" ></textarea>
             </div>
           </fieldset>
           <button className="uk-button-small uk-button-default">Submit</button>
@@ -52,11 +63,11 @@ class PostForm extends Component {
 
 }
 
-const mapStateToProps = ({user}) => {
+const mapStateToProps = (state) => {
   return {
-    user: user
+    user: state.user
   }
 }
 
 
-export default connect(mapStateToProps)(PostForm);
+export default connect(mapStateToProps, {postPost, patchUserInfo})(PostForm);

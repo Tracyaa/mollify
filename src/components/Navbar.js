@@ -5,7 +5,9 @@ import {removeUserFromState} from '../redux/actions'
 
 
 class Navbar extends Component {
+
   render() {
+    console.log('from navabar',this.props.user, this.props.token);
     return (
 
       <nav className="uk-navbar-container uk-margin" uk-navbar="mode: click">
@@ -20,13 +22,22 @@ class Navbar extends Component {
         <div className="uk-navbar-right">
 
          <ul className="uk-navbar-nav">
-           <li><Link to="/mollify/posts">All Posts</Link></li>
-           <li><Link to="/mollify/posts/new">Write a post</Link></li>
+
+           {!!this.props.user.token ?
+             <li><Link to="/mollify/posts">Situations</Link></li>
+             : null
+           }
+
+           {(!!this.props.user.token && !this.props.user.has_a_post) ?
+            <li><Link to="/mollify/posts/new">Write a post</Link></li> :
+              null
+           }
+
            <li>
-             <a href="/mollify/student-profile">Account</a>
+             <a>Account</a>
              <div className="uk-navbar-dropdown">
                <ul className="uk-nav uk-navbar-dropdown-nav">
-                 {!!this.props.token ?
+                 {!!this.props.user.token ?
                    <div>
                      <li><Link to="/mollify/student-profile">P r o f i l e</Link></li>
                      <li onClick={this.props.removeUserFromState}><Link to="/">L o g o u t</Link></li>
@@ -50,9 +61,7 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.user.token
+    user: state.user
   }
 }
 export default connect(mapStateToProps, {removeUserFromState})(Navbar);
-
-// <a href="#">Account</a>

@@ -9,7 +9,7 @@ const postReducer = (state = initialState, action) => {
     case 'SAVE_POSTS_TO_STATE':
       return {...state, all: action.payload}
 
-    case 'POST_NEW_CASE':
+    case 'POST_NEW_POST_TO_STATE':
       return {...state, post: action.payload}
 
     // case 'REMOVE_CASE':

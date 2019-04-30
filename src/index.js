@@ -15,14 +15,24 @@ import {Provider} from 'react-redux'
 import postReducer from './redux/postReducer'
 import userReducer from './redux/userReducer'
 
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
+
 ////////////////////////////
 const rootReducer = combineReducers({
   post: postReducer,
   user: userReducer
 })
 
+const persistConfig = {
+  key: 'root',
+  storage
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)))
 
 ReactDOM.render(
   <BrowserRouter>
