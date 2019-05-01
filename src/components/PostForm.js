@@ -38,11 +38,11 @@ class PostForm extends Component {
         <form onSubmit={this.submitHandler} className="uk-container uk-container-expand">
           <fieldset className="uk-fieldset">
 
-            <legend className="uk-legend">Write new Post:</legend>
+            <legend className="uk-legend">Tell us your situation:</legend>
 
             <div className="uk-margin">
               <select onChange={this.changeHandler} className="uk-select" name="gender_preference">
-                <option>choose your preferred gender</option>
+                <option>choose preferred gender for your counselor</option>
                 <option value="female">female</option>
                 <option value="male">male</option>
                 <option value="other">other</option>

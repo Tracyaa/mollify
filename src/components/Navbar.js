@@ -7,14 +7,14 @@ import {removeUserFromState} from '../redux/actions'
 class Navbar extends Component {
 
   render() {
-    console.log('from navabar',this.props.user, this.props.token);
+    console.log('from navbar', this.props)
     return (
 
       <nav className="uk-navbar-container uk-margin" uk-navbar="mode: click">
         <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
             <li className="uk-active"><Link to="/">Mollify</Link></li>
-            <li><Link to="/mollify/counselor-profile">Counselor</Link></li>
+
           </ul>
         </div>
 
@@ -28,18 +28,18 @@ class Navbar extends Component {
              : null
            }
 
-           {(!!this.props.user.token && !this.props.user.has_a_post) ?
-            <li><Link to="/mollify/posts/new">Write a post</Link></li> :
+           {(!!this.props.user.token && !this.props.user.has_a_post && (this.props.user.role === 'student')) ?
+            <li><Link to="/mollify/posts/new">Tell us</Link></li> :
               null
            }
 
            <li>
-             <a>Account</a>
+             <a uk-icon="user"></a>
              <div className="uk-navbar-dropdown">
                <ul className="uk-nav uk-navbar-dropdown-nav">
                  {!!this.props.user.token ?
                    <div>
-                     <li><Link to="/mollify/student-profile">P r o f i l e</Link></li>
+                     <li><Link to={this.props.user.role === 'counselor' ? "/mollify/counselor-profile" : "/mollify/student-profile"}>P r o f i l e</Link></li>
                      <li onClick={this.props.removeUserFromState}><Link to="/">L o g o u t</Link></li>
                    </div>
                    :

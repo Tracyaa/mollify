@@ -19,6 +19,8 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import 'semantic-ui-css/semantic.min.css'
+
 ////////////////////////////
 const rootReducer = combineReducers({
   post: postReducer,

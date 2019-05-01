@@ -6,11 +6,22 @@ import PostCard from '../components/PostCard'
 
 class PostList extends Component {
 
-  availablePosts = () => {
-    if (!!this.props.posts) {
+  // availablePosts = () => {
+  //   if (!!this.props.posts) {
+  //
+  //     let userPosts = this.props.posts.filter(post => post.student_id === this.props.user.id)
+  //     return userPosts.map(post => <PostCard key={post.id} post={post}/>)
+  //   }
+  // }
 
-      let userPosts = this.props.posts.filter(post => post.student_id === this.props.user.id)
-      return userPosts.map(post => <PostCard key={post.id} post={post}/>)
+  allPosts = () => {
+    return this.props.posts.map(post => <PostCard key={post.id} post={post}/>)
+  }
+
+  studentPosts = () => {
+    if (!!this.props.posts) {
+      let studentPosts = this.props.posts.filter(post => post.student_id === this.props.user.id)
+      return studentPosts.map(post => <PostCard key={post.id} post={post}/>)
     }
   }
 
@@ -19,16 +30,12 @@ class PostList extends Component {
       <div>
         <h2>All students posts</h2>
         <div className="post-list post-card uk-child-width-1-3@s uk-grid-match uk-grid" data-uk-grid="masonry: true">
-          {this.availablePosts()}
-          {/*this.props.role === 'counselor' ?
-            this.availablePosts()
+          {this.props.user.role === 'counselor' ?
+            this.allPosts()
             :
-            <div>
-              <h1>You sucq</h1>
-              <h2>You mad bro</h2>
-              <h3>You mad merengue</h3>
-            </div>
-          */}
+              // <PostCard key={this.props.user.posts[0].id} post={this.props.user.posts[0]} />
+            this.studentPosts()
+          }
         </div>
       </div>
 
@@ -42,7 +49,6 @@ class PostList extends Component {
 const mapStateToProps = state => {
   return {
     posts: state.post.all,
-    role: state.user.role,
     user: state.user
   }
 }
