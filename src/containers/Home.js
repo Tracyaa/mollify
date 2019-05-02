@@ -3,7 +3,13 @@ import React, { Component } from 'react'
 export default class Home extends Component {
   render() {
     return (
-      <div>This is Home</div>
+
+      <div>
+        <h3 className="uk-h3 uk-container uk-container-xsmall">
+          How might we improve reliable counseling resources for mental health issues for Teenagers(middle/high school) who cannot find them from their schools, so that
+they will be able to find help and keep their privacy.
+        </h3>
+      </div>
     )
   }
 }

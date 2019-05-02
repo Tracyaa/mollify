@@ -34,12 +34,13 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-      	    <Route path="/mollify/signup" component={Signup}/>
-      	    <Route path="/mollify/login" component={LoginForm}/>
-      	    <Route path="/mollify/student-profile" component={StudentProfile}/>
-      	    <Route path="/mollify/counselor-profile" component={CounselorProfile}/>
-      	    <Route exact path="/mollify/posts" component={PostList}/>
-      	    <Route path="/mollify/posts/new" component={PostForm}/>
+      	    <Route path="/signup" component={Signup}/>
+      	    <Route path="/login" component={LoginForm}/>
+      	    <Route path="/student-profile" component={StudentProfile}/>
+      	    <Route path="/counselor-profile" component={CounselorProfile}/>
+      	    <Route exact path="/situations" component={PostList}/>
+      	    <Route exact path="/inquiries" component={PostList}/>
+      	    <Route path="/posts/new" component={PostForm}/>
       	  </Switch>
         </div>
     );

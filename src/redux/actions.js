@@ -61,7 +61,7 @@ export const fetchSignup = (userObj) => {
   }
 }
 
-export const fetchLogIn = (userObj) => {
+export const fetchLogIn = (userObj, push) => {
   return (dispatch) => {
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
@@ -77,8 +77,11 @@ export const fetchLogIn = (userObj) => {
         dispatch(saveUserToState(information.user))
         dispatch(saveTokenToState(information.jwt))
         localStorage.setItem("jwt", information.jwt)
+        push("/")
         // localStorage.setItem('user', JSON.stringify(information.user));
         // JSON.parse(localStorage.getItem('user'));
+      } else{
+        push("/login")
       }
     })
   }
@@ -92,6 +95,10 @@ export const removeUserFromState = () => {
 
 const savePostsToState = (posts) => {
   return {type: "SAVE_POSTS_TO_STATE", payload: posts}
+}
+
+const patchPostToState = (post) => {
+  return {type: "PATCH_POST_TO_STATE", payload: post}
 }
 
 export const fetchPosts = () => {
@@ -110,6 +117,21 @@ export const postPost = (postObj) => {
   return (dispatch) => {
     fetch("http://localhost:3000/api/v1/posts", {
       method: "POST",
+      headers: {
+        "content-type": "application/json",
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(postObj)
+    })
+    .then(resp => resp.json())
+    .then(post => dispatch(savePostToState(post)))
+  }
+}
+
+export const patchPost = (postObj) => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/posts", {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
         'Accept': 'application/json'

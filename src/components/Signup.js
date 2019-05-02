@@ -36,7 +36,7 @@ class Signup extends Component {
   render() {
     return (
       <form onSubmit={this.submitHandler}>
-        <h2>Signup Form</h2>
+        <h2>Signup</h2>
         <div className="uk-margin">
           <div className="uk-inline">
             <input className="uk-input uk-border-rounded" type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler}required />
