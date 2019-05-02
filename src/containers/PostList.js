@@ -2,20 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PostCard from '../components/PostCard'
 
-
-
 class PostList extends Component {
 
-  // availablePosts = () => {
-  //   if (!!this.props.posts) {
-  //
-  //     let userPosts = this.props.posts.filter(post => post.student_id === this.props.user.id)
-  //     return userPosts.map(post => <PostCard key={post.id} post={post}/>)
-  //   }
-  // }
-
   allPosts = () => {
-    return this.props.posts.map(post => <PostCard key={post.id} post={post}/>)
+    let activePosts = this.props.posts.filter(post => !post.activated)
+    return activePosts.map(post => <PostCard key={post.id} post={post}/>)
   }
 
   studentPosts = () => {
@@ -25,16 +16,22 @@ class PostList extends Component {
     }
   }
 
+  // inquiriesPosts = () => {
+  //   let inquiries = this.props.posts.filter(post => this.prop.user.id === post.counselor_id)
+  //   return inquiries.map(post => <PostCard key={post.id} post={post}/>)
+  // }
+
   render() {
+
     return (
       <div>
-        <h2>All students posts</h2>
+        {this.props.user.role === 'counselor' ?
+          <h2>ALL INQUIRIES</h2> :
+          <h2>ALL SITUATIONS</h2>
+        }
         <div className="post-list post-card uk-child-width-1-3@s uk-grid-match uk-grid" data-uk-grid="masonry: true">
           {this.props.user.role === 'counselor' ?
-            this.allPosts()
-            :
-              // <PostCard key={this.props.user.posts[0].id} post={this.props.user.posts[0]} />
-            this.studentPosts()
+            this.allPosts() : this.studentPosts()
           }
         </div>
       </div>
@@ -43,8 +40,6 @@ class PostList extends Component {
   }
 
 }
-
-// const mapStateToProps = (state) => state
 
 const mapStateToProps = state => {
   return {

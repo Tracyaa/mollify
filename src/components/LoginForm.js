@@ -19,25 +19,29 @@ class LoginForm extends React.Component {
  handleSubmit = (e) => {
     e.preventDefault()
     let userObj = this.state
-    this.props.fetchLogIn(userObj)
-    this.props.history.push('/')
+    this.props.fetchLogIn(userObj, this.props.history.push)
+    // if (!localStorage.jwt) {
+    //
+    //   this.props.history.push('/')
+    // } else {
+    //   this.props.history.push('/login')
+    // }
   }
-
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h2>Login Form</h2>
+        <h2 className="uk-text-lead">Login</h2>
         <div className="uk-margin">
           <div className="uk-inline">
             <span className="uk-form-icon" uk-icon="icon: user"></span>
-            <input className="uk-input uk-border-rounded" type="text" id="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleChange} />
+            <input className="uk-input uk-border-rounded" type="text" id="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleChange} required/>
           </div>
         </div>
         <div className="uk-margin">
           <div className="uk-inline">
             <span className="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-            <input className="uk-input uk-border-rounded" type="password" id="id" placeholder="password" name="password" value={this.state.password} onChange={this.handleChange} />
+            <input className="uk-input uk-border-rounded" type="password" id="id" placeholder="password" name="password" value={this.state.password} onChange={this.handleChange} required/>
           </div>
         </div>
         <button className='uk-button uk-button-primary uk-border-rounded'>Login</button>

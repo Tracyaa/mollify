@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {postPost, patchUserInfo} from '../redux/actions'
+import {patchPost} from '../redux/actions'
 
-
-
-class PostForm extends Component {
+class PostEditForm extends Component {
 
   state = {
     student_id: this.props.user.id,
@@ -21,15 +19,10 @@ class PostForm extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    if (!this.props.user.has_a_post) {
-      this.props.patchUserInfo(this.props.user)
-      this.props.postPost(this.state)
-      this.props.history.push('/posts')
-    } else {
-      this.props.history.push('/login')
-    }
+    console.log('testing');
+    // this.props.patchPost(this.state)
+    // this.props.history.push('/posts')
   };
-
 
 
   render() {
@@ -38,10 +31,10 @@ class PostForm extends Component {
         <form onSubmit={this.submitHandler} className="uk-container uk-container-expand">
           <fieldset className="uk-fieldset">
 
-            <legend className="uk-legend">Tell us your situation:</legend>
+            <legend className="uk-legend">Edit your situation:</legend>
 
             <div className="uk-margin">
-              <select onChange={this.changeHandler} className="uk-select" name="gender_preference">
+              <select value={this.props.post.gender_preference} onChange={this.changeHandler} className="uk-select" name="gender_preference">
                 <option>choose preferred gender for your counselor</option>
                 <option value="female">female</option>
                 <option value="male">male</option>
@@ -50,10 +43,10 @@ class PostForm extends Component {
             </div>
 
             <div className="uk-margin">
-              <textarea onChange={this.changeHandler} name="content" className="uk-textarea" rows="5" placeholder="Textarea" required></textarea>
+              <textarea value={this.props.post.content} onChange={this.changeHandler} name="content" className="uk-textarea" rows="5" placeholder="Textarea" ></textarea>
             </div>
           </fieldset>
-          <button className="uk-button-small uk-button-default">Submit</button>
+          <button className="uk-button-small uk-button-default uk-border-rounded">Submit</button>
 
         </form>
 
@@ -70,4 +63,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {postPost, patchUserInfo})(PostForm);
+export default connect(mapStateToProps, {patchPost})(PostEditForm);

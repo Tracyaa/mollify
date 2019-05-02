@@ -12,6 +12,8 @@ const postReducer = (state = initialState, action) => {
     case 'POST_NEW_POST_TO_STATE':
       return {...state, post: action.payload}
 
+    case 'PATCH_POST_TO_STATE':
+      return {...state, post: action.payload}
     // case 'REMOVE_CASE':
 
     default:
