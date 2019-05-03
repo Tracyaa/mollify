@@ -13,7 +13,16 @@ const postReducer = (state = initialState, action) => {
       return {...state, post: action.payload}
 
     case 'PATCH_POST_TO_STATE':
-      return {...state, post: action.payload}
+      const patchedPosts = state.all.map(post => {
+        if(post.id === action.payload.id) {
+          return action.payload
+        } else {
+          return post
+        }
+      })
+      return {
+          all: patchedPosts
+      }
     // case 'REMOVE_CASE':
 
     default:

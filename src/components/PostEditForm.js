@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {patchPost} from '../redux/actions'
+import {withRouter} from 'react-router-dom'
 
 class PostEditForm extends Component {
 
   state = {
     student_id: this.props.user.id,
-    gender_preference: "",
-    type: "",
-    content: ""
+    gender_preference: this.props.post.gender_preference,
+    type: this.props.post.type,
+    content: this.props.post.content
   }
 
   changeHandler = e => {
@@ -19,9 +20,8 @@ class PostEditForm extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log('testing');
-    // this.props.patchPost(this.state)
-    // this.props.history.push('/posts')
+    this.props.patchPost(this.props.post.id, this.state)
+    this.props.handleClose()
   };
 
 
@@ -34,7 +34,7 @@ class PostEditForm extends Component {
             <legend className="uk-legend">Edit your situation:</legend>
 
             <div className="uk-margin">
-              <select value={this.props.post.gender_preference} onChange={this.changeHandler} className="uk-select" name="gender_preference">
+              <select value={this.state.gender_preference} onChange={this.changeHandler} className="uk-select" name="gender_preference">
                 <option>choose preferred gender for your counselor</option>
                 <option value="female">female</option>
                 <option value="male">male</option>
@@ -43,7 +43,7 @@ class PostEditForm extends Component {
             </div>
 
             <div className="uk-margin">
-              <textarea value={this.props.post.content} onChange={this.changeHandler} name="content" className="uk-textarea" rows="5" placeholder="Textarea" ></textarea>
+              <textarea  value={this.state.content} onChange={this.changeHandler} name="content" className="uk-textarea" rows="5"></textarea>
             </div>
           </fieldset>
           <button className="uk-button-small uk-button-default uk-border-rounded">Submit</button>
@@ -63,4 +63,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {patchPost})(PostEditForm);
+export default withRouter(connect(mapStateToProps, {patchPost})(PostEditForm));
