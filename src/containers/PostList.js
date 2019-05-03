@@ -16,10 +16,10 @@ class PostList extends Component {
     }
   }
 
-  // inquiriesPosts = () => {
-  //   let inquiries = this.props.posts.filter(post => this.prop.user.id === post.counselor_id)
-  //   return inquiries.map(post => <PostCard key={post.id} post={post}/>)
-  // }
+  inquiriesPosts = () => {
+    let inquiries = this.props.posts.filter(post => this.props.user.id === post.counselor_id)
+    return inquiries.map(post => <PostCard key={post.id} post={post}/>)
+  }
 
   render() {
 
@@ -33,6 +33,7 @@ class PostList extends Component {
           {this.props.user.role === 'counselor' ?
             this.allPosts() : this.studentPosts()
           }
+          {this.inquiriesPosts()}
         </div>
       </div>
 

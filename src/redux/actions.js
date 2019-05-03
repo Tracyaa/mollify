@@ -80,7 +80,7 @@ export const fetchLogIn = (userObj, push) => {
         push("/")
         // localStorage.setItem('user', JSON.stringify(information.user));
         // JSON.parse(localStorage.getItem('user'));
-      } else{
+      } else {
         push("/login")
       }
     })
@@ -91,7 +91,11 @@ export const removeUserFromState = () => {
   return {type: "REMOVE_USER_FROM_STATE"}
 }
 
-///////STUDENT POST situations///////
+///////////////////////////////////////
+
+////////STUDENT POST situations////////
+
+///////////////////////////////////////
 
 const savePostsToState = (posts) => {
   return {type: "SAVE_POSTS_TO_STATE", payload: posts}
@@ -101,16 +105,16 @@ const patchPostToState = (post) => {
   return {type: "PATCH_POST_TO_STATE", payload: post}
 }
 
+const savePostToState = (post) => {
+  return {type: "POST_NEW_POST_TO_STATE", payload: post}
+}
+
 export const fetchPosts = () => {
   return (dispatch) => {
     fetch("http://localhost:3000/api/v1/posts")
     .then(resp => resp.json())
     .then(posts => dispatch(savePostsToState(posts)))
   }
-}
-
-const savePostToState = (post) => {
-  return {type: "POST_NEW_POST_TO_STATE", payload: post}
 }
 
 export const postPost = (postObj) => {
@@ -128,9 +132,9 @@ export const postPost = (postObj) => {
   }
 }
 
-export const patchPost = (postObj) => {
+export const patchPost = (id, postObj) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/posts", {
+    fetch(`http://localhost:3000/api/v1/posts/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -139,12 +143,16 @@ export const patchPost = (postObj) => {
       body: JSON.stringify(postObj)
     })
     .then(resp => resp.json())
-    .then(post => dispatch(savePostToState(post)))
+    .then(post => dispatch(patchPostToState(post)))
   }
 }
 
+////////////////////////////////////////
 
-//////COUNSELOR OPEN inquiries//////
+////////COUNSELOR OPEN inquiries////////
+
+////////////////////////////////////////
+
 const savePostToUser = (post) => {
   return {type: "SAVE_POST_TO_USER", payload: post}
 }
