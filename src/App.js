@@ -15,6 +15,7 @@ import PostList from "./containers/PostList";
 import StudentProfile from './components/StudentProfile'
 import CounselorProfile from './components/CounselorProfile'
 import PostForm from './components/PostForm'
+import VideoCall from './components/VideoCall'
 import Home from './containers/Home';
 import Navbar from './components/Navbar'
 
@@ -41,6 +42,7 @@ class App extends Component {
       	    <Route exact path="/situations" component={PostList}/>
       	    <Route exact path="/inquiries" component={PostList}/>
       	    <Route path="/posts/new" component={PostForm}/>
+      	    <Route path="/video-call/:postId" component={VideoCall}/>
       	  </Switch>
         </div>
     );

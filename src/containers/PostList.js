@@ -5,7 +5,7 @@ import PostCard from '../components/PostCard'
 class PostList extends Component {
 
   allPosts = () => {
-    let activePosts = this.props.posts.filter(post => !post.activated)
+    let activePosts = this.props.posts.filter(post => !post.activated || this.props.user.id === post.counselor_id)
     return activePosts.map(post => <PostCard key={post.id} post={post}/>)
   }
 
@@ -33,7 +33,7 @@ class PostList extends Component {
           {this.props.user.role === 'counselor' ?
             this.allPosts() : this.studentPosts()
           }
-          {this.inquiriesPosts()}
+
         </div>
       </div>
 

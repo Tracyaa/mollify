@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import _ from 'lodash'
-import { Button, Header, Icon, Modal, Card, Image, Popup, Container} from 'semantic-ui-react'
+import _ from 'lodash'
+import { Button, Header, Icon, Modal, Card, Image, Grid, Popup, Container} from 'semantic-ui-react'
 import PostEditForm from '../components/PostEditForm'
 import { patchPost } from '../redux/actions'
-import {NavLink} from 'react-router-dom'
 const timeoutLength = 2500
 
 class PostCard extends Component {
@@ -87,11 +86,8 @@ class PostCard extends Component {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          {this.props.post.activated ? (!!this.props.post.video_room_link ?
-            <NavLink to={`/video-call/${this.props.post.id}`} postId={this.props.post.id}>
-              <Button basic color='green'>Go to Room</Button>
-            </NavLink> :
-            <Button basic color='green'>Schedule a call</Button>) :
+          {this.props.post.activated ? <Button basic color='green'>
+            Schdeule a call</Button> :
             <div className='ui two buttons'>
               <Button onClick={this.handleAccept} basic color='green'>
                 Accept
@@ -108,24 +104,31 @@ class PostCard extends Component {
     }
   }
 
-
-
   openVideoRoomCard = () => {
     if (!!this.props.post.counselor) {
       return (
         <Card>
         <Card.Content>
           <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
-          <Card.Header>{this.props.post.student.name}</Card.Header>
-          <Card.Meta>{this.props.post.student.gender} / {this.props.post.student.school}</Card.Meta>
+          <Card.Header>{this.props.post.counselor.name}</Card.Header>
+          <Card.Meta>{this.props.post.counselor.gender} / {this.props.post.counselor.location}</Card.Meta>
           <Card.Description>
-            Time scheduled
+            {this.props.post.counselor.name} wants to talk to you
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <NavLink to={`/video-call/${this.props.post.id}`} postId={this.props.post.id}>
-            <Button basic color='green'>Ready to talk?</Button>
-          </NavLink>
+          {this.props.post.activated ? <Button basic src='/video-call' color='green'>
+            Create a room</Button> :
+            <div className='ui two buttons'>
+              <Button onClick={this.handleAccept} basic color='green'>
+                Accept
+              </Button>
+              <Button onClick={this.handleDecline} basic color='red'>
+                Decline
+              </Button>
+            </div>
+          }
+
         </Card.Content>
       </Card>
       )
@@ -149,7 +152,7 @@ class PostCard extends Component {
 
     const pending = <Icon name='paper plane outline' />
 
-    // const accepted = <Icon name='check circle outline'/>
+    const accepted = <Icon name='check circle outline'/>
 
     const popupCheck = (
       <Popup

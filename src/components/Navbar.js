@@ -6,73 +6,6 @@ import {removeUserFromState} from '../redux/actions'
 
 class Navbar extends Component {
 
-  // noLoggedIn = () => {
-  //   if (!this.props.user.token) {
-  //     return (
-  //       <div className="uk-navbar-right">
-  //         <ul className="uk-navbar-nav">
-  //           <li>
-  //             <a uk-icon="user"></a>
-  //             <div className="uk-navbar-dropdown">
-  //              <ul className="uk-nav uk-navbar-dropdown-nav">
-  //                <div>
-  //                  <li><Link to="/login">L o g i n</Link></li>
-  //                  <li><Link to="/signup">S i g n u p</Link></li>
-  //                </div>
-  //             </ul>
-  //           </div>
-  //          </li>
-  //        </ul>
-  //      </div>
-  //     )
-  //   }
-  // }
-  // studentLoggedIn = () => {
-  //   if (!!this.props.user.token) {
-  //     return (
-  //       <div className="uk-navbar-right">
-  //         <ul className="uk-navbar-nav">
-  //           <li><Link to="/posts">Situations</Link></li>
-  //           <li>
-  //             <a uk-icon="user"></a>
-  //             <div className="uk-navbar-dropdown">
-  //              <ul className="uk-nav uk-navbar-dropdown-nav">
-  //                <div>
-  //                  <li><Link to={"/student-profile"}>P r o f i l e</Link></li>
-  //                  <li onClick={this.props.removeUserFromState}><Link to="/">L o g o u t</Link></li>
-  //                </div>
-  //             </ul>
-  //           </div>
-  //          </li>
-  //        </ul>
-  //      </div>
-  //     )
-  //   }
-  // }
-  // counselorLoggedIn = () => {
-  //   if (!!this.props.user.token) {
-  //     return (
-  //       <div className="uk-navbar-right">
-  //         <ul className="uk-navbar-nav">
-  //           <li><Link to="/posts">inquiries</Link></li>
-  //           <li><Link to="/posts">Situations</Link></li>
-  //           <li>
-  //             <a uk-icon="user"></a>
-  //             <div className="uk-navbar-dropdown">
-  //              <ul className="uk-nav uk-navbar-dropdown-nav">
-  //                <div>
-  //                  <li><Link to={"/counselor-profile"}>P r o f i l e</Link></li>
-  //                  <li onClick={this.props.removeUserFromState}><Link to="/">L o g o u t</Link></li>
-  //                </div>
-  //             </ul>
-  //           </div>
-  //          </li>
-  //        </ul>
-  //      </div>
-  //     )
-  //   }
-  // }
-
   render() {
     console.log('from navbar', this.props.user)
     return (
@@ -81,6 +14,7 @@ class Navbar extends Component {
         <div className="uk-navbar-left">
           <ul className="uk-navbar-nav">
             <li><Link to="/">Mollify</Link></li>
+            <li><Link to="/video-call">Call</Link></li>
           </ul>
         </div>
         <div className="uk-navbar-right">

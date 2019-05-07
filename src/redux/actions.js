@@ -1,3 +1,55 @@
+// const saveVideoRoomToState = (videoRoomObj) => {
+//   return {type: "SAVE_VIDEO_ROOM_TO_STATE", payload: videoRoomObj}
+// }
+//
+// const deleteVideoRoomToState = (videoRoomObj) => {
+//   return {type: "SAVE_VIDEO_ROOM_TO_STATE", payload: videoRoomObj}
+// }
+//
+// const key = '3137d1b0d526cff69a0fab9c482ee2cdc34fee1dbae73fd9e94257df35c287c4'
+//
+// export const postVideoRoom = () => {
+//   return (dispatch) => {
+//     fetch("https://api.daily.co/v1/rooms", {
+//       method: 'POST',
+//       headers: {
+//         'Content-type': 'application/json',
+//         'Authorization': 'Bearer 3137d1b0d526cff69a0fab9c482ee2cdc34fee1dbae73fd9e94257df35c287c4'
+//       },
+//       body: JSON.stringify({
+//         'privacy': 'public',
+//         'properties': {'max_participants': 1}
+//       })
+//     })
+//     .then(resp => resp.json())
+//   }
+// }
+//
+// export const getVideoRoom = (roomName) => {
+//   return (dispatch) => {
+//     fetch(`https://api.daily.co/v1/rooms/${roomName}`, {
+//       method: 'GET',
+//       headers: {
+//         'Authorization': 'Bearer 3137d1b0d526cff69a0fab9c482ee2cdc34fee1dbae73fd9e94257df35c287c4',
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//     .then(resp => resp.json())
+//   }
+// }
+//
+// export const deleteVideoRoom = (roomName) => {
+//   return (dispatch) => {
+//     fetch(`https://api.daily.co/v1/rooms/${roomName}`, {
+//       method: 'DELETE',
+//       headers: {
+//         'Authorization': 'Bearer 3137d1b0d526cff69a0fab9c482ee2cdc34fee1dbae73fd9e94257df35c287c4'
+//       }
+//     })
+//     .then(resp => resp.json())
+//   }
+// }
+
 ///////USER ACTIONS///////
 
 const saveUserToState = (userObj) => {
@@ -171,3 +223,5 @@ export const fetchPost = (postID, token) => {
     })
   }
 }
+
+//////
