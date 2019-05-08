@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Header, Icon, Modal, Card, Image, Popup, Container} from 'semantic-ui-react'
 import PostEditForm from '../components/PostEditForm'
 import { patchPost } from '../redux/actions'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 const timeoutLength = 2500
 
 class PostCard extends Component {
@@ -71,7 +71,6 @@ class PostCard extends Component {
 
   handleCloseCallCard = () => {
     this.setState({ isCallOpen: false })
-    clearTimeout(this.timeout)
   }
 
   counselorRequestCard = () => {
@@ -123,7 +122,7 @@ class PostCard extends Component {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <NavLink to={`/video-call/${this.props.post.id}`} postId={this.props.post.id}>
+          <NavLink to={`/video-call/${this.props.post.id}`}>
             <Button basic color='green'>Ready to talk?</Button>
           </NavLink>
         </Card.Content>
@@ -165,7 +164,7 @@ class PostCard extends Component {
     return (
       <div>
           <div className="uk-card uk-card-default uk-card-hover uk-card-body uk-border-rounded">
-            <h3 className="uk-card-title"> {this.props.post.activated ?
+            <h3 className="post-card-title uk-card-title"> {this.props.post.activated ?
                 this.props.post.student.name : 'Anonymous'}
                 {this.props.userId === this.props.post.counselor_id ? (this.props.post.activated ? popupCheck : pending) : null}
                 {this.props.post.requested && this.props.role === 'student'? popupBell : null}

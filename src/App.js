@@ -12,8 +12,8 @@ import {Switch, Route, withRouter} from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 import Signup from "./components/Signup";
 import PostList from "./containers/PostList";
-import StudentProfile from './components/StudentProfile'
-import CounselorProfile from './components/CounselorProfile'
+import Profile from "./containers/Profile";
+import ProfileCard from './components/ProfileCard'
 import PostForm from './components/PostForm'
 import VideoCall from './components/VideoCall'
 import Home from './containers/Home';
@@ -37,10 +37,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
       	    <Route path="/signup" component={Signup}/>
       	    <Route path="/login" component={LoginForm}/>
-      	    <Route path="/student-profile" component={StudentProfile}/>
-      	    <Route path="/counselor-profile" component={CounselorProfile}/>
-      	    <Route exact path="/situations" component={PostList}/>
-      	    <Route exact path="/inquiries" component={PostList}/>
+      	    <Route path="/profile/:name" component={Profile}/>
       	    <Route path="/posts/new" component={PostForm}/>
       	    <Route path="/video-call/:postId" component={VideoCall}/>
       	  </Switch>

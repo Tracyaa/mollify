@@ -24,12 +24,12 @@ class PostList extends Component {
   render() {
 
     return (
-      <div>
+      <div class="post-list uk-width-expand@m uk-text-center">
         {this.props.user.role === 'counselor' ?
-          <h2>ALL INQUIRIES</h2> :
-          <h2>ALL SITUATIONS</h2>
+          <h2 className="card-title" style={{color:'white'}}>INQUIRIES</h2> :
+          <h2 className="card-title" style={{color:'white'}}>SITUATIONS</h2>
         }
-        <div className="post-list post-card uk-child-width-1-3@s uk-grid-match uk-grid" data-uk-grid="masonry: true">
+        <div className="uk-child-width-1-3@s uk-grid-match uk-grid" data-uk-grid="masonry: true">
           {this.props.user.role === 'counselor' ?
             this.allPosts() : this.studentPosts()
           }

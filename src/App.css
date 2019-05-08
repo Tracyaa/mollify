@@ -8,17 +8,52 @@ nav ul{
 	padding: 10px;
 	text-align: center;
 	margin-top: 20px;
-  space-between: 10px;
+}
+
+.home {
+  padding: 50px;
 }
 
 li {
   list-style-type: none;
 }
 
-.post-list {
-  margin: 50px
-}
-
 body {
   background-color: #40e0d0 !important;
+}
+
+.card-title {
+  padding: 15px;
+}
+
+.profile {
+  margin: 20px;
+}
+
+.profile-card {
+  margin: 20px;
+}
+
+.profile-card-content {
+  padding: 30px;
+}
+
+.post-list {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.post-card-title {
+  color: #2D6C7A !important;
+}
+
+.uk-card-body {
+    padding-bottom: 15px;
+    padding-top: 30px;
+}
+
+.uk-card-footer {
+  padding-top: 20px;
 }

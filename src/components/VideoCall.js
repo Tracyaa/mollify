@@ -91,7 +91,6 @@ class VideoCall extends Component {
         </Button.Group>
       }
         <Divider />
-
         <iframe width="600" height="600"
         allow="camera; microphone; autoplay"
         src={this.state.videoRoomLink}
