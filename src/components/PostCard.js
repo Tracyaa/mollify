@@ -87,7 +87,14 @@ class PostCard extends Component {
           <Card.Header>{this.props.post.counselor.name}, {this.props.post.counselor.title}</Card.Header>
           <Card.Meta>{this.props.post.counselor.gender}</Card.Meta>
           <Card.Description>
-            {this.props.post.counselor.bio}
+            <div className="uk-height-medium">
+              <div className="js-wrapper">
+                <div uk-overflow-auto="selContainer: .uk-height-medium; selContent: .js-wrapper">
+                  {this.props.post.counselor.bio}
+                </div>
+              </div>
+            </div>
+
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -182,7 +189,7 @@ class PostCard extends Component {
                     <Modal.Description>
                       <Header>Age {this.props.post.student.age} {this.props.post.student.gender === 'female' ? <Icon name='venus' /> : (
                           this.props.post.student.gender === 'male' ? <Icon name='mars' /> : <Icon name='venus mars' />
-                      )}
+                      )} Preferred Gender: {this.props.post.gender_preference}
                     </Header>
                     {this.state.edit ? null : <p>{this.props.post.content}</p>}
                     {this.state.edit ? editForm : null}

@@ -15,13 +15,15 @@ class ProfileCard extends Component {
           <li>{this.props.user.rating}</li>
           <li>{this.props.user.gender}</li>
           <li>{this.props.user.email}</li>
-          <li>Bio:</li>
+          {this.props.user.role === 'counselor' ? <li>Bio:</li> : null}
           <div className="uk-height-medium">
+            {this.props.user.role === 'counselor' ?
             <div className="js-wrapper">
               <div uk-overflow-auto="selContainer: .uk-height-medium; selContent: .js-wrapper">
                 <li>{this.props.user.bio}</li>
               </div>
             </div>
+            : null}
           </div>
         </div>
       </div>

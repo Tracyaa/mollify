@@ -24,7 +24,7 @@ class PostList extends Component {
   render() {
 
     return (
-      <div class="post-list uk-width-expand@m uk-text-center">
+      <div className="post-list uk-width-expand@m uk-text-center">
         {this.props.user.role === 'counselor' ?
           <h2 className="card-title" style={{color:'white'}}>INQUIRIES</h2> :
           <h2 className="card-title" style={{color:'white'}}>SITUATIONS</h2>

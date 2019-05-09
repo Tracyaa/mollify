@@ -20,12 +20,7 @@ class LoginForm extends React.Component {
     e.preventDefault()
     let userObj = this.state
     this.props.fetchLogIn(userObj, this.props.history.push)
-    // if (!localStorage.jwt) {
-    //
-    //   this.props.history.push('/')
-    // } else {
-    //   this.props.history.push('/login')
-    // }
+
   }
 
   render() {

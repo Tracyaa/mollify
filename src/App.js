@@ -11,9 +11,7 @@ import {Switch, Route, withRouter} from 'react-router-dom'
 ////////
 import LoginForm from './components/LoginForm';
 import Signup from "./components/Signup";
-import PostList from "./containers/PostList";
 import Profile from "./containers/Profile";
-import ProfileCard from './components/ProfileCard'
 import PostForm from './components/PostForm'
 import VideoCall from './components/VideoCall'
 import Home from './containers/Home';

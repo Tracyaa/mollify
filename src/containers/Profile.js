@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Header, Icon, Modal, Card, Container} from 'semantic-ui-react'
 import PostList from '../containers/PostList'
 import ProfileCard from '../components/ProfileCard'
 
