@@ -8,14 +8,21 @@ class ProfileCard extends Component {
 
     return(
       <div className="profile-card uk-width-1-4@m uk-text-center">
-        <div className="profile-card-content uk-card uk-card-default">
+        <div className="uk-container profile-card-content uk-card uk-card-default uk-border-rounded">
 
-        <h3>{this.props.user.name}'s Profile</h3>
-          <li><Image src={this.props.user.img_url} size='medium' circular centered/></li>
+          <li><Image src={this.props.user.img_url} size='small' circular centered/></li>
+          <h3>{this.props.user.name}{this.props.user.role === 'counselor' ? `, ${this.props.user.title}` : null}</h3>
           <li>{this.props.user.rating}</li>
           <li>{this.props.user.gender}</li>
           <li>{this.props.user.email}</li>
-          <li>{this.props.user.bio}</li>
+          <li>Bio:</li>
+          <div className="uk-height-medium">
+            <div className="js-wrapper">
+              <div uk-overflow-auto="selContainer: .uk-height-medium; selContent: .js-wrapper">
+                <li>{this.props.user.bio}</li>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

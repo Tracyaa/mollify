@@ -77,6 +77,9 @@ class VideoCall extends Component {
     this.setState({inRoom: false})
   }
 
+  handleSolved = () => {
+
+  }
   render() {
     return (
       <div className="video-call">
@@ -87,15 +90,17 @@ class VideoCall extends Component {
         </Button.Group> :
         <Button.Group basic>
           <Button onClick={this.joinVideoRoom}>Join Room</Button>
-           <Button onClick={this.leabeVideoRoom}>Leave Room</Button>
+           <Button onClick={this.deleteVideoRoom}>Leave Room</Button>
         </Button.Group>
       }
         <Divider />
-        <iframe width="600" height="600"
+        <iframe width="700" height="600"
         allow="camera; microphone; autoplay"
         src={this.state.videoRoomLink}
         title="what">
         </iframe>
+        <Divider />
+        <Button onClick={this.handleSolved}>Solved?</Button>
       </div>
     )
   }

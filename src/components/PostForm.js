@@ -24,8 +24,8 @@ class PostForm extends Component {
     if (!this.props.user.has_a_post) {
       this.props.patchUserInfo(this.props.user)
       this.props.postPost(this.state)
-      this.props.history.push('/posts')
-    } else {
+      this.props.history.push(`/profile/${this.props.user.name}`)
+    } else if (this.props.user) {
       this.props.history.push('/login')
     }
   };

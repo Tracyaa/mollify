@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import _ from 'lodash'
 import { Button, Header, Icon, Modal, Card, Image, Popup, Container} from 'semantic-ui-react'
 import PostEditForm from '../components/PostEditForm'
-import { patchPost } from '../redux/actions'
+import { patchPost, deletePost, patchUserInfo } from '../redux/actions'
 import { NavLink } from 'react-router-dom'
 const timeoutLength = 2500
 
@@ -20,6 +20,11 @@ class PostCard extends Component {
     this.setState({
       edit: !this.state.edit
     })
+  }
+
+  handleDelete = () => {
+    this.props.patchUserInfo(this.props.user)
+    this.props.deletePost(this.props.post.id)
   }
 
   handleReadMore = () => {
@@ -79,10 +84,10 @@ class PostCard extends Component {
         <Card>
         <Card.Content>
           <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
-          <Card.Header>{this.props.post.counselor.name}</Card.Header>
-          <Card.Meta>{this.props.post.counselor.gender} / {this.props.post.counselor.location}</Card.Meta>
+          <Card.Header>{this.props.post.counselor.name}, {this.props.post.counselor.title}</Card.Header>
+          <Card.Meta>{this.props.post.counselor.gender}</Card.Meta>
           <Card.Description>
-            {this.props.post.counselor.name} wants to talk to you
+            {this.props.post.counselor.bio}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -106,8 +111,6 @@ class PostCard extends Component {
       )
     }
   }
-
-
 
   openVideoRoomCard = () => {
     if (!!this.props.post.counselor) {
@@ -171,18 +174,20 @@ class PostCard extends Component {
             </h3>
             <p className="uk-panel uk-panel-box uk-text-truncate">{this.props.post.content}</p>
             <div className="uk-card-footer">
+
               <Modal open={this.state.showModal} trigger={<a onClick={this.handleReadMore} href="#" className="uk-button uk-button-text">Read more</a>} >
 
                 <Modal.Content image scrolling>
                   <Container>
-                  <Modal.Description>
-                    <Header>Age {this.props.post.student.age} {this.props.post.student.gender === 'female' ? <Icon name='venus' /> : (
-                        this.props.post.student.gender === 'male' ? <Icon name='mars' /> : <Icon name='venus mars' />
+                    <Modal.Description>
+                      <Header>Age {this.props.post.student.age} {this.props.post.student.gender === 'female' ? <Icon name='venus' /> : (
+                          this.props.post.student.gender === 'male' ? <Icon name='mars' /> : <Icon name='venus mars' />
                       )}
                     </Header>
                     {this.state.edit ? null : <p>{this.props.post.content}</p>}
                     {this.state.edit ? editForm : null}
                   </Modal.Description>
+
                 </Container>
                 </Modal.Content>
 
@@ -190,17 +195,25 @@ class PostCard extends Component {
                   {this.props.userId === this.props.post.student.id ?
                     (!this.state.edit ?
                       <div>
+                        {!this.props.post.activated ?
+                          <Button className="ui red basic button" onClick={this.handleDelete}>
+                            Delete
+                          </Button> : null
+                        }
                         <Button className="ui red basic button" onClick={this.handleClose}>
                           Close
                         </Button>
                         <Button className="ui teal basic button" onClick={this.handleClick}>
                           Edit<Icon name='chevron right' />
-                      </Button>
+                        </Button>
                       </div>
                        :
-                      <Button className="ui teal basic button" onClick={this.handleClick}>
-                        <Icon name='chevron left' />Cancel
-                      </Button>
+                     <div>
+                        <Button className="ui teal basic button" onClick={this.handleClick}>
+                          <Icon name='chevron left' />Cancel
+                        </Button>
+
+                     </div>
                     ) :
                      <div>
                        <Button className="ui red basic button" onClick={this.handleClose}>
@@ -224,6 +237,7 @@ class PostCard extends Component {
 
                 </Modal.Actions>
               </Modal>
+
             </div>
           </div>
       </div>
@@ -237,8 +251,9 @@ class PostCard extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.user.id,
-    role: state.user.role
+    role: state.user.role,
+    user: state.user
   }
 }
 
-export default connect(mapStateToProps, {patchPost})(PostCard)
+export default connect(mapStateToProps, {patchPost, deletePost, patchUserInfo})(PostCard)

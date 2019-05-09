@@ -8,7 +8,7 @@ import {fetchPosts, fetchCurrentUser} from './redux/actions'
 // ROUTING
 import {Switch, Route, withRouter} from 'react-router-dom'
 
-// import Navbar from "./components/Navbar";
+////////
 import LoginForm from './components/LoginForm';
 import Signup from "./components/Signup";
 import PostList from "./containers/PostList";

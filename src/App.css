@@ -21,6 +21,14 @@ li {
 body {
   background-color: #40e0d0 !important;
 }
+.uk-legend {
+  color: #2D6C7A !important;
+}
+
+.uk-container {
+  max-width: 1300px;
+  max-height: 700px;
+}
 
 .card-title {
   padding: 15px;
@@ -40,11 +48,14 @@ body {
 
 .post-list {
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: 40px;
   margin-right: 10px;
   padding: 10px;
 }
 
+.title {
+  color: #FFFFFF !important;
+}
 .post-card-title {
   color: #2D6C7A !important;
 }

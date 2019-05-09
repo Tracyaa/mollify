@@ -7,7 +7,7 @@ import {removeUserFromState} from '../redux/actions'
 class Navbar extends Component {
 
   render() {
-    console.log('from navbar', this.props.user)
+
     return (
 
       <nav className="navbar uk-navbar-container uk-margin" uk-navbar="mode: click">
@@ -19,15 +19,14 @@ class Navbar extends Component {
         <div className="uk-navbar-right">
           <ul className="uk-navbar-nav">
 
-  
+
 
            {(!!this.props.user.token && !this.props.user.has_a_post && (this.props.user.role === 'student')) ?
             <li><Link to="/posts/new">Tell us</Link></li> : null
            }
 
            <li>
-
-             <Link uk-icon="user" to={`/profile/${this.props.user.name.toLowerCase()}`}></Link>
+             <Link uk-icon="user" to={!!this.props.user.token ? `/profile/${this.props.user.name.toLowerCase()}` : '/login'}></Link>
              <div className="uk-navbar-dropdown">
                <ul className="uk-nav uk-navbar-dropdown-nav">
                  {!!this.props.user.token ?

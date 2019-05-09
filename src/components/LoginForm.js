@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h2 className="uk-text-lead">Login</h2>
+        <h2 className="title uk-text-lead">Login</h2>
         <div className="uk-margin">
           <div className="uk-inline">
             <span className="uk-form-icon" uk-icon="icon: user"></span>

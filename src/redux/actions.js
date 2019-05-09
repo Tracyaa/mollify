@@ -64,6 +64,7 @@ const updateUserPostInfoToState = (user) => {
   return {type: "UPDATE_USER_POST_INFO_TO_STATE", payload: user}
 }
 
+
 const setUserToState = (user) => {
   return {type: "SET_USER_TO_STATE", payload: user}
 }
@@ -160,6 +161,9 @@ const patchPostToState = (post) => {
 const savePostToState = (post) => {
   return {type: "POST_NEW_POST_TO_STATE", payload: post}
 }
+const removePostFromState = (post) => {
+  return {type: "DELETE_POST", payload: post}
+}
 
 export const fetchPosts = () => {
   return (dispatch) => {
@@ -196,6 +200,14 @@ export const patchPost = (id, postObj) => {
     })
     .then(resp => resp.json())
     .then(post => dispatch(patchPostToState(post)))
+  }
+}
+
+export const deletePost = (postId) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/api/v1/posts/${postId}`, {method: 'DELETE'})
+      .then(resp => resp.json())
+      .then(post => dispatch(removePostFromState(post)))
   }
 }
 
