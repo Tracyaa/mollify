@@ -100,6 +100,7 @@ class VideoCall extends Component {
         title="what">
         </iframe>
         <Divider />
+
         <Button onClick={this.handleSolved}>Solved?</Button>
       </div>
     )

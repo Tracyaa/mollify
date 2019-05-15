@@ -50,7 +50,7 @@ class PostForm extends Component {
             </div>
 
             <div className="uk-margin">
-              <textarea onChange={this.changeHandler} name="content" className="uk-textarea" rows="5" placeholder="Textarea" required></textarea>
+              <textarea onChange={this.changeHandler} name="content" className="uk-textarea" rows="5" placeholder="Tell us your situation" required></textarea>
             </div>
           </fieldset>
           <button className="uk-button-small uk-button-default">Submit</button>

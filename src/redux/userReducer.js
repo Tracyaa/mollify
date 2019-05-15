@@ -8,7 +8,7 @@ let initialState = {
   role: "",
   title: "",
   school: "",
-  img_url:"",
+  img_url: "",
   location: "",
   bio: "",
   has_a_post: "",
@@ -36,7 +36,7 @@ const userReducer = (state = initialState, action) => {
         title: user.title,
         role: user.role,
         school: user.school,
-        img_url: (!user.img_url ? "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png" : user.img_url),
+        img_url: user.img_url,
         location: user.location,
         bio: user.bio,
         has_a_post: user.has_a_post,
@@ -51,7 +51,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...action.payload
       };
-    
+
 
     case "REMOVE_USER_FROM_STATE":
       localStorage.clear()

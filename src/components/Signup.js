@@ -11,7 +11,8 @@ class Signup extends Component {
     password_confirmation: "",
     gender: "",
     age: null,
-    school: ""
+    school: "",
+    img_url: ""
   };
 
   changeHandler = e => {
@@ -31,6 +32,7 @@ class Signup extends Component {
       age: null,
       school: ""
     });
+    this.props.history.push("/login")
   };
 
   render() {
@@ -74,6 +76,11 @@ class Signup extends Component {
         <div className="uk-margin">
           <div className="uk-inline">
             <input className="uk-input uk-border-rounded" type="text" placeholder="school" name="school" value={this.state.school} onChange={this.changeHandler} required/>
+          </div>
+        </div>
+        <div className="uk-margin">
+          <div className="uk-inline">
+            <input className="uk-input uk-border-rounded" type="text" placeholder="image_url" name="img_url" value={this.state.img_url} onChange={this.changeHandler} required/>
           </div>
         </div>
         <button className='uk-button uk-button-primary uk-border-rounded'>Signup</button>

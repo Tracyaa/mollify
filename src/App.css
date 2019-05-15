@@ -1,3 +1,8 @@
+html, body, #root {
+  background-color: #40e0d0;
+}
+
+
 .Mollify{
   text-align: center;
 }

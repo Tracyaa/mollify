@@ -12,8 +12,9 @@ class ProfileCard extends Component {
 
           <li><Image src={this.props.user.img_url} size='small' circular centered/></li>
           <h3>{this.props.user.name}{this.props.user.role === 'counselor' ? `, ${this.props.user.title}` : null}</h3>
+          {this.props.user.role === 'student' ? <li>Age: {this.props.user.age}</li> : null}
+          <li>Gender: {this.props.user.gender}</li>
           <li>{this.props.user.rating}</li>
-          <li>{this.props.user.gender}</li>
           <li>{this.props.user.email}</li>
           {this.props.user.role === 'counselor' ? <li>Bio:</li> : null}
           <div className="uk-height-medium">

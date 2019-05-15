@@ -147,7 +147,7 @@ class PostCard extends Component {
 
     const popupBell = (
       <Popup
-        trigger={<Icon name='bell outline' />}
+        trigger={<Icon name={!this.props.post.video_room_link ? 'bell outline' : 'phone'} />}
         content={this.counselorRequestCard()}
         on='click'
         open={this.state.isOpen}
@@ -207,7 +207,7 @@ class PostCard extends Component {
                             Delete
                           </Button> : null
                         }
-                        <Button className="ui red basic button" onClick={this.handleClose}>
+                        <Button className="ui grey basic button" onClick={this.handleClose}>
                           Close
                         </Button>
                         <Button className="ui teal basic button" onClick={this.handleClick}>
