@@ -7,8 +7,13 @@ they will be able to find help and keep their privacy.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+For back-end setup please go to: https://github.com/Tracyaa/mollify-api
+
 
 ### Installation
+
+1. Fork the repo to the directory you want.
+2. Then run:
 
 ```
 $npm install
