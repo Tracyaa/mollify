@@ -44,4 +44,4 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Tracy Ho** - *Initial work* - [PurpleBooth](https://github.com/Tracyaa)
+* **Tracy Ho** - *Initial work* - [Tracyaa](https://github.com/Tracyaa)
