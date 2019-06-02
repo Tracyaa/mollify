@@ -19,12 +19,11 @@ For back-end setup please go to: https://github.com/Tracyaa/mollify-api
 $npm install
 ```
 
+3. Before running the server, make sure you have backend setup.
 
 ```
 $npm start
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 
 ## Built With
@@ -45,3 +44,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Tracy Ho** - *Initial work* - [Tracyaa](https://github.com/Tracyaa)
+
+## Demo
+
+Here's the link to the video demo: (coming soon)
