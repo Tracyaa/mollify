@@ -5,7 +5,7 @@ import { Image } from 'semantic-ui-react'
 class ProfileCard extends Component {
 
   render() {
-
+    console.log(this.props.user);
     return(
       <div className="profile-card uk-width-1-4@m uk-text-center">
         <div className="uk-container profile-card-content uk-card uk-card-default uk-border-rounded">

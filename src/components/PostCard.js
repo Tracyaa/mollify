@@ -51,9 +51,9 @@ class PostCard extends Component {
 
   handleOpen = () => {
     this.setState({ isOpen: true })
-    this.timeout = setTimeout(() => {
-      this.setState({ isOpen: false })
-    }, timeoutLength)
+    // this.timeout = setTimeout(() => {
+    //   this.setState({ isOpen: false })
+    // }, timeoutLength)
   }
   handleCloseCard = () => {
     this.setState({ isOpen: false })

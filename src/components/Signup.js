@@ -9,7 +9,7 @@ class Signup extends Component {
     email: "",
     password: "",
     password_confirmation: "",
-    gender: "",
+    gender: "female",
     age: null,
     school: "",
     img_url: ""
@@ -18,7 +18,7 @@ class Signup extends Component {
   changeHandler = e => {
     this.setState({
       [e.target.name]: e.target.value
-    });
+    }, () => console.log(this.state));
   };
 
   submitHandler = e => {
@@ -61,7 +61,7 @@ class Signup extends Component {
         </div>
         <div className="uk-margin">
           <div className="uk-inline">
-            <select className="uk-select uk-border-rounded" required>
+            <select onChange={this.changeHandler} name="gender" className="uk-select uk-border-rounded" required>
                 <option value='female'>Female</option>
                 <option value='male'>Male</option>
                 <option value='other'>Other</option>
