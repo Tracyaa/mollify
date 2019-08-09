@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-
 import './App.css';
+
 // REDUX
 import {connect} from 'react-redux'
 import {fetchPosts, fetchCurrentUser} from './redux/actions'

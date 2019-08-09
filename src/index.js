@@ -15,11 +15,11 @@ import {Provider} from 'react-redux'
 import postReducer from './redux/postReducer'
 import userReducer from './redux/userReducer'
 
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { PersistGate } from 'redux-persist/integration/react'
 
 import 'semantic-ui-css/semantic.min.css'
+
 console.log = function(){};
 ////////////////////////////
 const rootReducer = combineReducers({

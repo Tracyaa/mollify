@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import _ from 'lodash'
 import { Button, Header, Icon, Modal, Card, Image, Popup, Container} from 'semantic-ui-react'
 import PostEditForm from '../components/PostEditForm'
 import { patchPost, deletePost, patchUserInfo } from '../redux/actions'
 import { NavLink } from 'react-router-dom'
-const timeoutLength = 2500
 
 class PostCard extends Component {
 
@@ -182,7 +180,7 @@ class PostCard extends Component {
             <p className="uk-panel uk-panel-box uk-text-truncate">{this.props.post.content}</p>
             <div className="uk-card-footer">
 
-              <Modal open={this.state.showModal} trigger={<a onClick={this.handleReadMore} href="#" className="uk-button uk-button-text">Read more</a>} >
+              <Modal open={this.state.showModal} trigger={<a onClick={this.handleReadMore} href="1" className="uk-button uk-button-text">Read more</a>} >
 
                 <Modal.Content image scrolling>
                   <Container>
