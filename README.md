@@ -3,6 +3,8 @@
 This app is for improving reliable counseling resources for mental health issues for Teenagers(middle/high school) who cannot find them from their schools, so that
 they will be able to find help and keep their privacy.
 
+live site please go to: https://mollify.herokuapp.com
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
