@@ -9,9 +9,10 @@ export default class Home extends Component {
           Welcome to Mollify
           <br/>
           <br/>
-          Student can only have one open situation at a time
+          TELL US your story
           <br/>
-          Your name will not be shown unless you accept the invitation
+          <br/>
+          Your case will be anonymous until you accept an invitation from a counselor
           <br/>
           <br/>
           All conversations will go through video calls
