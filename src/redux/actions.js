@@ -50,6 +50,7 @@
 //   }
 // }
 
+const hostName = "https://mollify-api.herokuapp.com/"
 ///////USER ACTIONS///////
 
 const saveUserToState = (userObj) => {
@@ -72,7 +73,7 @@ const setUserToState = (user) => {
 export const patchUserInfo = (user) => {
   const updatedUser = {...user, has_a_post: !user.has_a_post}
   return (dispatch) =>{
-    fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+    fetch(`${hostName}api/v1/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +88,7 @@ export const patchUserInfo = (user) => {
 
 export const fetchCurrentUser = () => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/current_user", {
+    fetch(`${hostName}api/v1/current_user`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -103,7 +104,7 @@ export const fetchCurrentUser = () => {
 
 export const fetchSignup = (userObj) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch(`${hostName}api/v1/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -116,7 +117,7 @@ export const fetchSignup = (userObj) => {
 
 export const fetchLogIn = (userObj, push) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch(`${hostName}api/v1/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -167,7 +168,7 @@ const removePostFromState = (post) => {
 
 export const fetchPosts = () => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/posts")
+    fetch(`${hostName}api/v1/posts`)
     .then(resp => resp.json())
     .then(posts => dispatch(savePostsToState(posts)))
   }
@@ -175,7 +176,7 @@ export const fetchPosts = () => {
 
 export const postPost = (postObj) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/posts", {
+    fetch(`${hostName}api/v1/posts`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -190,7 +191,7 @@ export const postPost = (postObj) => {
 
 export const patchPost = (id, postObj) => {
   return (dispatch) => {
-    fetch(`http://localhost:3000/api/v1/posts/${id}`, {
+    fetch(`${hostName}api/v1/posts/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -205,7 +206,7 @@ export const patchPost = (id, postObj) => {
 
 export const deletePost = (postId) => {
   return (dispatch) => {
-    fetch(`http://localhost:3000/api/v1/posts/${postId}`, {method: 'DELETE'})
+    fetch(`${hostName}api/v1/posts/${postId}`, {method: 'DELETE'})
       .then(resp => resp.json())
       .then(post => dispatch(removePostFromState(post)))
   }
@@ -223,7 +224,7 @@ const savePostToUser = (post) => {
 
 export const fetchPost = (postID, token) => {
   return (dispatch) => {
-    fetch(`http://localhost:3000/posts/${postID}/buy`, {
+    fetch(`${hostName}posts/${postID}/buy`, {
       method: "POST",
       headers: {"Authorization": token}
     })
