@@ -20,7 +20,7 @@ import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import 'semantic-ui-css/semantic.min.css'
-
+console.log = function(){};
 ////////////////////////////
 const rootReducer = combineReducers({
   post: postReducer,
