@@ -55,7 +55,7 @@ class PostCard extends Component {
   }
   handleCloseCard = () => {
     this.setState({ isOpen: false })
-    clearTimeout(this.timeout)
+    // clearTimeout(this.timeout)
   }
 
   handleAccept = () => {
@@ -180,7 +180,7 @@ class PostCard extends Component {
             <p className="uk-panel uk-panel-box uk-text-truncate">{this.props.post.content}</p>
             <div className="uk-card-footer">
 
-              <Modal open={this.state.showModal} trigger={<a onClick={this.handleReadMore} href="1" className="uk-button uk-button-text">Read more</a>} >
+              <Modal open={this.state.showModal} trigger={<button onClick={this.handleReadMore} className="uk-button uk-button-text">Read more</button>} >
 
                 <Modal.Content image scrolling>
                   <Container>
