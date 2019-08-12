@@ -51,6 +51,7 @@
 // }
 
 const hostName = "https://mollify-api.herokuapp.com/"
+// const hostName = "http://localhost:3000/"
 ///////USER ACTIONS///////
 
 const saveUserToState = (userObj) => {
@@ -72,6 +73,8 @@ const setUserToState = (user) => {
 
 export const patchUserInfo = (user) => {
   const updatedUser = {...user, has_a_post: !user.has_a_post}
+  console.log(updatedUser)
+  debugger
   return (dispatch) =>{
     fetch(`${hostName}api/v1/users/${user.id}`, {
       method: "PATCH",
